@@ -1,5 +1,7 @@
 package broker;
 
-public class Stock {
+import java.util.Observable;
+
+public class Stock extends Observable{
 
 }
