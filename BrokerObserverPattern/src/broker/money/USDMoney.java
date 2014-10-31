@@ -6,11 +6,11 @@ import java.util.Locale;
 
 public class USDMoney implements Money {
 	private BigDecimal amount;
-	
+
 	public USDMoney(BigDecimal amount) {
 		this.amount = amount;
 	}
-	
+
 	@Override
 	public NumberFormat getNumberFormat() {
 		return NumberFormat.getCurrencyInstance(getMoneyLocal());
@@ -28,10 +28,10 @@ public class USDMoney implements Money {
 
 	@Override
 	public void setAmount(BigDecimal amount) {
-		if(amount == null){
+		if (amount == null) {
 			throw new NullPointerException("Amount of Money Cannot be Null");
 		}
-		
+
 		this.amount = amount;
 	}
 
