@@ -2,13 +2,14 @@ package observer;
 
 import java.util.Observable;
 
+import observable.event.ObservableEvent;
 import subject.Stock;
+import subject.StockStatus;
 import errors.StockAlreadyExsists;
 import errors.StockDoesNotExsist;
-import broker.StockStatus;
 import broker.DAO.StockDAO;
 
-public class StockBroker extends Observer {
+public class StockBroker implements Observer {
 
 	private StockBroker() {
 	}
@@ -32,18 +33,25 @@ public class StockBroker extends Observer {
 			return null;
 		}
 	}
-
-	public void addStock(Stock stock) {
+	
+	/**
+	 * @param stock
+	 * @return 1 if the stock was added 0 if the stock already exists
+	 *
+	 */
+	public int addStock(Stock stock) {
 		try {
 			StockDAO.INSTANCE.addStock(stock);
+			return 1;
 		} catch (StockAlreadyExsists e) {
 			e.printStackTrace();
 		}
+		return 0;
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable observable, ObservableEvent event) {
 		// TODO Auto-generated method stub
-
+		
 	}
 }

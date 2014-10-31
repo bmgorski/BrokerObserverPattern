@@ -1,5 +1,12 @@
 package observer;
 
-public abstract class Observer implements java.util.Observer {
+import java.util.Observable;
+
+import observable.event.ObservableEvent;
+
+
+public interface Observer {
+	
+	public void update(Observable observable,  ObservableEvent event);
 
 }

@@ -3,8 +3,6 @@ package subject;
 import java.util.Collections;
 import java.util.Vector;
 
-import broker.StockStatus;
-
 public class Stock extends Subject {
 	private String stockSymbol;
 	private Vector<StockStatus> statuses;
