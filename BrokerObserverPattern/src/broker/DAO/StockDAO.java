@@ -9,8 +9,7 @@ import errors.StockDoesNotExsist;
 public enum StockDAO {
 	INSTANCE;
 
-	private StockDAO() {
-	};
+	private StockDAO() {};
 
 	private HashMap<String, Stock> stocks = new HashMap<String, Stock>();
 
