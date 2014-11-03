@@ -6,8 +6,15 @@ import subject.StockStatus;
 public abstract class ObservableEventBase implements IObservableEvent {
 	private Stock newStock;
 	private StockStatus newStatus;
+	private String symbol;
 	
 	
+	public String getSymbol() {
+		return symbol;
+	}
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
+	}
 	public Stock getNewStock() {
 		return newStock;
 	}

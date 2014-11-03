@@ -1,8 +1,13 @@
 package observer;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
+import errors.StockAlreadyExsists;
+import errors.StockDoesNotExsist;
+import broker.DAO.StockDAO;
 import observable.event.*;
+import subject.Stock;
 
 public class StockMonitor implements Observer {
 
@@ -26,7 +31,17 @@ public class StockMonitor implements Observer {
 	
 	@Override
 	public void update(Observable observable, ObservableEventBase event) {
-		// TODO Auto-generated method stub
+		
+		if(event instanceof StockStatusUpdate){
+			try{
+				StockDAO.INSTANCE.addStockStatus(event.getNewStatus(), event.getSymbol());
+				ArrayList<Stock> currentStocks = StockDAO.INSTANCE.getStocks();
+				
+				
+			}catch(StockDoesNotExsist e){
+				e.printStackTrace();
+			}
+		}
 		
 	}
 
