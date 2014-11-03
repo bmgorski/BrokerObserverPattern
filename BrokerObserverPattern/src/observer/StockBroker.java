@@ -2,7 +2,7 @@ package observer;
 
 import java.util.Observable;
 
-import observable.event.ObservableEvent;
+import observable.event.*;
 import subject.Stock;
 import subject.StockStatus;
 import errors.StockAlreadyExsists;
@@ -11,6 +11,19 @@ import broker.DAO.StockDAO;
 
 public class StockBroker implements Observer {
 
+	private static StockBroker instance=null;
+	
+	
+	public static StockBroker getInstance(){
+		if(instance==null)
+			instance = new StockBroker();
+		
+		return instance;
+	}
+	
+	/**
+	 * Private to prevent outside instantiations
+	 */
 	private StockBroker() {
 	}
 
@@ -50,8 +63,10 @@ public class StockBroker implements Observer {
 	}
 
 	@Override
-	public void update(Observable observable, ObservableEvent event) {
-		// TODO Auto-generated method stub
-		
+	public void update(Observable observable, ObservableEventBase event) {
+		//if the event type was of NewStockEvent then add the stock to the collection
+		if (event instanceof NewStockEvent){
+			addStock(event.getNewStock());
+		}		
 	}
 }

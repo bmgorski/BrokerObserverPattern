@@ -1,5 +1,5 @@
 package observable.event;
 
-public interface ObservableEvent {
+public interface IObservableEvent {
 	String getEventName();
 }

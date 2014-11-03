@@ -1,6 +1,6 @@
 package observable.event;
 
-public class StockStatusUpdate implements ObservableEvent {
+public class StockStatusUpdate extends ObservableEventBase {
 
 	@Override
 	public String getEventName() {
