@@ -7,8 +7,6 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import observable.event.ObservableEvent;
-import observer.StockBroker;
-import observer.StockMonitor;
 import subject.ObservableSubject;
 
 public class EventMediator extends ObservableSubject implements Observer {
@@ -38,7 +36,8 @@ public class EventMediator extends ObservableSubject implements Observer {
 	
 	public synchronized void addObserver(Observer o, ObservableEvent observableEvent) {
 		String observableEventName = observableEvent.getEventName();
-		if(observerEvents.contains(observableEventName)){
+		
+		if(observerEvents.containsKey(observableEventName)){
 			observerEvents.get(observableEventName).add(o);
 		}
 		else{
@@ -46,11 +45,12 @@ public class EventMediator extends ObservableSubject implements Observer {
 			observers.add(o);
 			observerEvents.put(observableEventName, observers);
 		}
+		
 	}
 	
 	public synchronized void removeObserver(Observer o, ObservableEvent observableEvent) {
 		String observableEventName = observableEvent.getEventName();
-		if(observerEvents.contains(observableEventName)){
+		if(observerEvents.containsKey(observableEventName)){
 			observerEvents.get(observableEventName).remove(o);
 		}
 	}

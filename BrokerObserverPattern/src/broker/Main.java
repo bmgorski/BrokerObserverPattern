@@ -12,6 +12,7 @@ import mediator.EventMediator;
 
 public class Main {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) throws InterruptedException {
 		EventMediator moderator = EventMediator.getInstance();
 		StockBroker stockBroker = StockBroker.getInstance();
@@ -19,7 +20,7 @@ public class Main {
 		
 		Stock stock = new Stock("ABC", new StockStatus(new Date(), new USDMoney(new BigDecimal("22"))));
 		
-		Stock stock2 = new Stock("ABCD", new StockStatus(new Date(), new USDMoney(new BigDecimal("22"))));
+		Stock stock2 = new Stock("ABCD", new StockStatus(new Date(), new USDMoney(new BigDecimal("29"))));
 	
 
 	}

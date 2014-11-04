@@ -1,13 +1,15 @@
 package observer;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Observable;
 
+import errors.StockAlreadyExsists;
+import broker.DAO.StockDAO;
 import mediator.EventMediator;
 import observable.event.NewStockEvent;
-import observable.event.ObservableEvent;
 import observable.event.StockStatusUpdate;
 import subject.Stock;
-import subject.StockStatus;
 
 public class StockMonitor extends StockObserver {
 	
@@ -20,6 +22,10 @@ public class StockMonitor extends StockObserver {
 		
 		return stockMonitor;
 	}
+	
+	private HashMap<String, Stock> getStocks(){
+		return StockDAO.getInstance().getStocks();
+	}
 
 	private StockMonitor() {
 		EventMediator moderator = EventMediator.getInstance();
@@ -27,24 +33,36 @@ public class StockMonitor extends StockObserver {
 		moderator.addObserver(this, new StockStatusUpdate());
 	}
 
+	/**
+	 * @param stock
+	 * @return 1 if the stock was added 0 if the stock already exists
+	 *
+	 */
+	public int addStock(Stock stock) {
+		try {
+			StockDAO.getInstance().addStock(stock);
+			return 1;
+		} catch (StockAlreadyExsists e) {
+			//e.printStackTrace();
+		}
+		return 0;
+	}
+
 
 	@Override
 	public void update(Observable o, Object arg) {
-		
-		String eventType = ((ObservableEvent) arg).getEventName();
-		
-		switch (eventType) {
-		case NewStockEvent.EVENT_NAME:
-			Stock stock = (Stock)o;
-			StockStatus stockStatus = stock.getCurrentStockStatus();
-			
-			System.out.println("StockMonitor says: new stock created: StockSymbole - " + stock.getStockSymbol() +
-					"Stock Last Status Time - " + stockStatus.getDateTime() + " Money - " + stockStatus.getMoney().formattedAmount() );
-			break;
-
-		default:
-			break;
+		if(arg instanceof NewStockEvent){
+			addStock((Stock)o);
 		}
 		
+		System.out.println("Stock Monitor Update Follows:");
+		
+		Collection<Stock> stocks = getStocks().values();
+		
+		for(Stock stock : stocks){
+			System.out.println(stock.toString());
+			System.out.println(stock.getCurrentStockStatus().toString());
+			System.out.println();
+		}
 	}
 }

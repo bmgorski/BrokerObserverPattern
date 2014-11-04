@@ -1,7 +1,6 @@
 package subject;
 
 import java.util.Collections;
-import java.util.Observable;
 import java.util.Vector;
 
 import observable.event.NewStockEvent;
@@ -42,5 +41,10 @@ public class Stock extends ObservableSubject {
 
 	public String getStockSymbol() {
 		return stockSymbol;
-	}	
+	}
+	
+	@Override
+	public String toString() {
+		return "Stock Symbol: " + this.stockSymbol;
+	}
 }

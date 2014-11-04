@@ -20,6 +20,10 @@ public class StockDAO {
 		return stockDAO;
 	}
 
+	public HashMap<String, Stock> getStocks(){
+		return stocks;
+	}
+	
 	public Stock getStock(String stockSymbol) throws StockDoesNotExsist {
 		if (!stocks.containsKey(stockSymbol)) {
 			throw new StockDoesNotExsist();

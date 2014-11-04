@@ -4,10 +4,8 @@ import java.util.Observable;
 
 import mediator.EventMediator;
 import observable.event.NewStockEvent;
-import observable.event.ObservableEvent;
 import subject.Stock;
 import subject.StockStatus;
-import subject.ObservableSubject;
 import errors.StockAlreadyExsists;
 import errors.StockDoesNotExsist;
 import broker.DAO.StockDAO;
@@ -42,7 +40,7 @@ public class StockBroker extends StockObserver {
 		try {
 			return StockDAO.getInstance().getStock(stockSymbol);
 		} catch (StockDoesNotExsist e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		}
 	}
@@ -64,8 +62,14 @@ public class StockBroker extends StockObserver {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		System.out.println("Stock Broker Update Follows:");
 		
+		Stock stock = (Stock)o;
+		addStock(stock);
+		
+		System.out.println(stock.toString());
+		System.out.println(stock.getCurrentStockStatus().toString());
+		System.out.println();
 	}
 
 }
