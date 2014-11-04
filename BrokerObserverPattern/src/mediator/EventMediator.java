@@ -1,4 +1,4 @@
-package moderator;
+package mediator;
 
 import java.util.HashSet;
 import java.util.Observable;
@@ -10,19 +10,19 @@ import observable.event.ObservableEvent;
 import errors.IncompatibleObject;
 import subject.ObservableSubject;
 
-public class Moderator extends ObservableSubject implements Observer {
+public class EventMediator extends ObservableSubject implements Observer {
 	
-	private static volatile Moderator moderator;
+	private static volatile EventMediator moderator;
 	
-	public static synchronized Moderator getInstance(){
+	public static synchronized EventMediator getInstance(){
 		if(moderator == null){
-			moderator = new Moderator();
+			moderator = new EventMediator();
 		}
 		
 		return moderator;
 	}
 	
-	private Moderator() {
+	private EventMediator() {
 		// TODO Auto-generated constructor stub
 	}
 

@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.Vector;
 
 import observable.event.NewStockEvent;
-import moderator.Moderator;
+import mediator.EventMediator;
 
 public class Stock extends ObservableSubject {
 	private String stockSymbol;
@@ -16,7 +16,7 @@ public class Stock extends ObservableSubject {
 		this.stockSymbol = stockSymbol;
 		
 		//Get instance of the Moderator
-		this.addObserver(Moderator.getInstance());
+		this.addObserver(EventMediator.getInstance());
 		
 		//Notify the Moderator of the new stock creation
 		notifyObservers(new NewStockEvent());

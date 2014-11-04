@@ -1,6 +1,6 @@
 package observer;
 
-import moderator.Moderator;
+import mediator.EventMediator;
 import observable.event.NewStockEvent;
 import observable.event.ObservableEvent;
 import observable.event.StockStatusUpdate;
@@ -21,7 +21,7 @@ public class StockMonitor extends StockObserver {
 	}
 
 	private StockMonitor() {
-		Moderator moderator = Moderator.getInstance();
+		EventMediator moderator = EventMediator.getInstance();
 		moderator.addObserver(this, new NewStockEvent());
 		moderator.addObserver(this, new StockStatusUpdate());
 	}
