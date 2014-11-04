@@ -7,10 +7,12 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import observable.event.ObservableEvent;
+import observer.StockBroker;
+import observer.StockMonitor;
 import subject.ObservableSubject;
 
 public class EventMediator extends ObservableSubject implements Observer {
-	
+	private ConcurrentHashMap<String, Set<Observer>> observerEvents = new ConcurrentHashMap<String, Set<Observer>>();
 	private static volatile EventMediator moderator;
 	
 	public static synchronized EventMediator getInstance(){
@@ -21,13 +23,20 @@ public class EventMediator extends ObservableSubject implements Observer {
 		return moderator;
 	}
 	
-	private EventMediator() {}
+	private EventMediator() {
+		StockBroker.getInstance();
+		StockMonitor.getInstance();
+	}
 
-	private ConcurrentHashMap<String, Set<Observer>> observerEvents = new ConcurrentHashMap<String, Set<Observer>>();
 	
-	@Override
-	public void notifyObservers(Object arg) {
-		super.notifyObservers(arg);
+	public void notifyObservers(Observable o, Object arg) {
+		String observableEventName = ((ObservableEvent) arg).getEventName();
+		Set<Observer> observers = observerEvents.get(observableEventName);
+		
+		for(Observer observer : observers){
+			observer.update(o, arg);
+		}
+
 	}
 	
 	public synchronized void addObserver(Observer o, ObservableEvent observableEvent) {
@@ -51,6 +60,6 @@ public class EventMediator extends ObservableSubject implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println("I am here");
+		notifyObservers(o, arg);
 	}
 }
