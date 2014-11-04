@@ -23,10 +23,7 @@ public class EventMediator extends ObservableSubject implements Observer {
 		return moderator;
 	}
 	
-	private EventMediator() {
-		StockBroker.getInstance();
-		StockMonitor.getInstance();
-	}
+	private EventMediator() {}
 
 	
 	public void notifyObservers(Observable o, Object arg) {
