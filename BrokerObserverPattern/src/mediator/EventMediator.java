@@ -7,7 +7,6 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import observable.event.ObservableEvent;
-import errors.IncompatibleObject;
 import subject.ObservableSubject;
 
 public class EventMediator extends ObservableSubject implements Observer {
@@ -22,29 +21,9 @@ public class EventMediator extends ObservableSubject implements Observer {
 		return moderator;
 	}
 	
-	private EventMediator() {
-		// TODO Auto-generated constructor stub
-	}
+	private EventMediator() {}
 
 	private ConcurrentHashMap<String, Set<Observer>> observerEvents = new ConcurrentHashMap<String, Set<Observer>>();
-	
-	@Override
-	public void update(Observable o, Object arg) {
-		if(o instanceof ObservableSubject && arg instanceof ObservableEvent){
-			update(o, arg);
-		}
-		else{
-			try {
-				throw new IncompatibleObject();
-			} catch (IncompatibleObject e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	public void update(ObservableSubject subject, ObservableEvent observableEvent){
-		
-	}
 	
 	@Override
 	public void notifyObservers(Object arg) {
@@ -68,5 +47,10 @@ public class EventMediator extends ObservableSubject implements Observer {
 		if(observerEvents.contains(observableEventName)){
 			observerEvents.get(observableEventName).remove(o);
 		}
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		System.out.println("I am here");
 	}
 }

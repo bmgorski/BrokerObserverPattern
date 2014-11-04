@@ -1,12 +1,13 @@
 package observer;
 
+import java.util.Observable;
+
 import mediator.EventMediator;
 import observable.event.NewStockEvent;
 import observable.event.ObservableEvent;
 import observable.event.StockStatusUpdate;
 import subject.Stock;
 import subject.StockStatus;
-import subject.ObservableSubject;
 
 public class StockMonitor extends StockObserver {
 	
@@ -26,15 +27,15 @@ public class StockMonitor extends StockObserver {
 		moderator.addObserver(this, new StockStatusUpdate());
 	}
 
+
 	@Override
-	public void update(ObservableSubject subject, ObservableEvent observableEvent) {
-		String eventType = observableEvent.getEventName();
+	public void update(Observable o, Object arg) {
 		
-		
+		String eventType = ((ObservableEvent) arg).getEventName();
 		
 		switch (eventType) {
 		case NewStockEvent.EVENT_NAME:
-			Stock stock = (Stock)subject;
+			Stock stock = (Stock)o;
 			StockStatus stockStatus = stock.getCurrentStockStatus();
 			
 			System.out.println("StockMonitor says: new stock created: StockSymbole - " + stock.getStockSymbol() +
@@ -44,7 +45,6 @@ public class StockMonitor extends StockObserver {
 		default:
 			break;
 		}
-			
 		
 	}
 }

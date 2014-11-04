@@ -1,5 +1,7 @@
 package observer;
 
+import java.util.Observable;
+
 import mediator.EventMediator;
 import observable.event.NewStockEvent;
 import observable.event.ObservableEvent;
@@ -61,7 +63,9 @@ public class StockBroker extends StockObserver {
 	}
 
 	@Override
-	public void update(ObservableSubject subject, ObservableEvent observableEvent) {
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
 		
 	}
+
 }

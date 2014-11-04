@@ -1,6 +1,7 @@
 package subject;
 
 import java.util.Collections;
+import java.util.Observable;
 import java.util.Vector;
 
 import observable.event.NewStockEvent;
@@ -17,9 +18,10 @@ public class Stock extends ObservableSubject {
 		
 		//Get instance of the Moderator
 		this.addObserver(EventMediator.getInstance());
+		this.setChanged();
 		
 		//Notify the Moderator of the new stock creation
-		notifyObservers(new NewStockEvent());
+		this.notifyObservers(new NewStockEvent());
 	}
 
 	public void addStatus(StockStatus aStatus) {
@@ -40,11 +42,5 @@ public class Stock extends ObservableSubject {
 
 	public String getStockSymbol() {
 		return stockSymbol;
-	}
-
-	@Override
-	public void notifyObservers(Object arg) {
-		super.notifyObservers(arg);
-	}
-	
+	}	
 }
