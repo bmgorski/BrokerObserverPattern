@@ -1,17 +1,30 @@
 package observer;
 
-import java.util.Observable;
-
+import moderator.Moderator;
+import observable.event.NewStockEvent;
 import observable.event.ObservableEvent;
 import subject.Stock;
 import subject.StockStatus;
+import subject.ObservableSubject;
 import errors.StockAlreadyExsists;
 import errors.StockDoesNotExsist;
 import broker.DAO.StockDAO;
 
-public class StockBroker implements Observer {
+public class StockBroker extends StockObserver {
+	
+	private static StockBroker stockBroker;
+	
+	public static synchronized StockBroker getInstance(){
+		if(stockBroker == null){
+			stockBroker = new StockBroker();
+		}
+		
+		return stockBroker;
+	}
 
 	private StockBroker() {
+		Moderator moderator = Moderator.getInstance();
+		moderator.addObserver(this, new NewStockEvent());
 	}
 
 	public StockStatus getCurrentStockStatus(String stockSymbol) {
@@ -25,11 +38,9 @@ public class StockBroker implements Observer {
 	 */
 	public Stock getStock(String stockSymbol) {
 		try {
-
-			return StockDAO.INSTANCE.getStock(stockSymbol);
+			return StockDAO.getInstance().getStock(stockSymbol);
 		} catch (StockDoesNotExsist e) {
 			e.printStackTrace();
-
 			return null;
 		}
 	}
@@ -41,7 +52,7 @@ public class StockBroker implements Observer {
 	 */
 	public int addStock(Stock stock) {
 		try {
-			StockDAO.INSTANCE.addStock(stock);
+			StockDAO.getInstance().addStock(stock);
 			return 1;
 		} catch (StockAlreadyExsists e) {
 			e.printStackTrace();
@@ -50,8 +61,7 @@ public class StockBroker implements Observer {
 	}
 
 	@Override
-	public void update(Observable observable, ObservableEvent event) {
-		// TODO Auto-generated method stub
+	public void update(ObservableSubject subject, ObservableEvent observableEvent) {
 		
 	}
 }

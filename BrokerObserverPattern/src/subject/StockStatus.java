@@ -13,11 +13,11 @@ public class StockStatus implements Comparable<StockStatus> {
 		this.money = money;
 	}
 
-	protected Money getMoney() {
+	public Money getMoney() {
 		return money;
 	}
 
-	protected Date getDateTime() {
+	public Date getDateTime() {
 		return dateTime;
 	}
 

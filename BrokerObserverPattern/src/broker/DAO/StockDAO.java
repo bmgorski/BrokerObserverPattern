@@ -6,15 +6,18 @@ import subject.Stock;
 import errors.StockAlreadyExsists;
 import errors.StockDoesNotExsist;
 
-public enum StockDAO {
-	INSTANCE;
-
+public class StockDAO {
 	private StockDAO() {};
 
 	private HashMap<String, Stock> stocks = new HashMap<String, Stock>();
-
-	public StockDAO getInstance() {
-		return INSTANCE;
+	private static StockDAO stockDAO;
+	
+	public static synchronized StockDAO getInstance(){
+		if(stockDAO == null){
+			stockDAO = new StockDAO();
+		}
+		
+		return stockDAO;
 	}
 
 	public Stock getStock(String stockSymbol) throws StockDoesNotExsist {

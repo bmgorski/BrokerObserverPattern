@@ -1,10 +1,10 @@
 package observable.event;
 
 public class StockStatusUpdate implements ObservableEvent {
-
+	public static final String EVENT_NAME = "Stock Status Update";
+	
 	@Override
 	public String getEventName() {
-		return "Stock Status Update";
+		return EVENT_NAME;
 	}
-
 }
