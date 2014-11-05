@@ -11,22 +11,18 @@ public class USDMoney implements Money {
 		this.amount = amount;
 	}
 
-	@Override
 	public NumberFormat getNumberFormat() {
 		return NumberFormat.getCurrencyInstance(getMoneyLocal());
 	}
 
-	@Override
 	public Locale getMoneyLocal() {
 		return Locale.US;
 	}
 
-	@Override
 	public BigDecimal getAmount() {
 		return amount;
 	}
 
-	@Override
 	public void setAmount(BigDecimal amount) {
 		if (amount == null) {
 			throw new NullPointerException("Amount of Money Cannot be Null");
@@ -35,7 +31,6 @@ public class USDMoney implements Money {
 		this.amount = amount;
 	}
 
-	@Override
 	public String formattedAmount() {
 		return getNumberFormat().format(getAmount());
 	}

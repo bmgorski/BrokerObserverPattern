@@ -49,7 +49,6 @@ public class StockMonitor extends StockObserver {
 	}
 
 
-	@Override
 	public void update(Observable o, Object arg) {
 		if(arg instanceof NewStockEvent){
 			addStock((Stock)o);

@@ -20,6 +20,12 @@ public class Main {
 		
 		Stock stock = new Stock("ABC", new StockStatus(new Date(), new USDMoney(new BigDecimal("22"))));
 		
+		StockStatus stockStatus = new StockStatus(new Date(new Date().getTime() + 5000), new USDMoney(new BigDecimal("23.55")));
+		
+		
+		
+		stock.addStatus(stockStatus);
+		
 		Stock stock2 = new Stock("ABCD", new StockStatus(new Date(), new USDMoney(new BigDecimal("29"))));
 	
 

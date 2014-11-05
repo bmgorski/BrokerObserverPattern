@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Vector;
 
 import observable.event.NewStockEvent;
+import observable.event.StockStatusUpdate;
 import mediator.EventMediator;
 
 public class Stock extends ObservableSubject {
@@ -28,7 +29,9 @@ public class Stock extends ObservableSubject {
 		Collections.sort(statuses);
 		
 		//Notify the Moderator of the new stockStatus creation
-		notifyObservers(new NewStockEvent());
+		this.setChanged();
+		notifyObservers(new StockStatusUpdate());
+		
 	}
 
 	public StockStatus getCurrentStockStatus() {

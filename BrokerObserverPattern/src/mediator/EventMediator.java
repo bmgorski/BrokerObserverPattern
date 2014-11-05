@@ -55,7 +55,6 @@ public class EventMediator extends ObservableSubject implements Observer {
 		}
 	}
 
-	@Override
 	public void update(Observable o, Object arg) {
 		notifyObservers(o, arg);
 	}

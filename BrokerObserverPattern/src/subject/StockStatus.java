@@ -23,13 +23,13 @@ public class StockStatus implements Comparable<StockStatus> {
 		return dateTime;
 	}
 
-	@Override
 	public int compareTo(StockStatus o) {
 		if (this.dateTime.before(o.dateTime)) {
-			return 0;
-		} else {
 			return 1;
+		} else if(this.dateTime.after(o.dateTime)) {
+			return -1;
 		}
+		return 0;
 	}
 	
 	@Override

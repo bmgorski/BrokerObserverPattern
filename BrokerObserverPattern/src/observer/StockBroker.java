@@ -55,12 +55,11 @@ public class StockBroker extends StockObserver {
 			StockDAO.getInstance().addStock(stock);
 			return 1;
 		} catch (StockAlreadyExsists e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return 0;
 	}
 
-	@Override
 	public void update(Observable o, Object arg) {
 		System.out.println("Stock Broker Update Follows:");
 		
