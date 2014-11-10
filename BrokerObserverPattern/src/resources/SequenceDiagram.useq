@@ -1,2 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sequence-diagram version="1.1.7" icons="true" automaticImage="PNG"/>
+<sequence-diagram version="1.1.7" icons="false" automaticImage="PNG">  
+  <object id="1" language="java" name="java.util.Observable" project="BrokerObserverPattern" 
+    file="C:/Program Files/Java/jre1.8.0_25/lib/rt.jar" binary="true" label="observable" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="350" y="0"/>    
+    <execution id="2">      
+      <position height="178" width="0" x="0" y="78"/>    
+    </execution>    
+    <execution id="4">      
+      <position height="115" width="0" x="0" y="120"/>    
+    </execution>    
+    <execution id="9">      
+      <position height="84" width="0" x="0" y="270"/>    
+    </execution>    
+    <execution id="11">      
+      <position height="21" width="0" x="0" y="312"/>    
+    </execution>    
+    <execution id="12">      
+      <position height="485" width="0" x="0" y="370"/>    
+    </execution>    
+    <execution id="14">      
+      <position height="422" width="0" x="0" y="412"/>    
+    </execution>    
+    <execution id="18">      
+      <position height="21" width="0" x="0" y="506"/>    
+    </execution>  
+  </object>  
+  <object id="21" language="java" name="java.util.Observer" project="BrokerObserverPattern" 
+    file="C:/Program Files/Java/jre1.8.0_25/lib/rt.jar" binary="true" type="interface" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="20">      
+      <position height="276" width="0" x="0" y="537"/>    
+    </execution>  
+  </object>  
+  <object id="24" language="java" name="mediator.EventMediator" project="BrokerObserverPattern" 
+    file="/BrokerObserverPattern/src/mediator/EventMediator.java" binary="false" label="eventMediator" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="23">      
+      <position height="220" width="0" x="0" y="572"/>    
+    </execution>    
+    <execution id="26">      
+      <position height="157" width="0" x="0" y="614"/>    
+    </execution>  
+  </object>  
+  <object id="33" language="java" name="observable.event.ObservableEvent" project="BrokerObserverPattern" 
+    file="/BrokerObserverPattern/src/observable/event/ObservableEvent.java" binary="false" type="interface" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="28">      
+      <position height="21" width="0" x="0" y="645"/>    
+    </execution>  
+  </object>  
+  <object id="34" language="java" name="java.util.concurrent.ConcurrentHashMap" project="BrokerObserverPattern" 
+    file="C:/Program Files/Java/jre1.8.0_25/lib/rt.jar" binary="true" label="observerEvents" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="30">      
+      <position height="21" width="0" x="0" y="687"/>    
+    </execution>  
+  </object>  
+  <object id="35" language="java" name="java.util.Observer" project="BrokerObserverPattern" 
+    file="C:/Program Files/Java/jre1.8.0_25/lib/rt.jar" binary="true" label="observer" type="interface" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="32">      
+      <position height="21" width="0" x="0" y="729"/>    
+    </execution>  
+  </object>  
+  <object id="36" language="java" name="java.util.Vector" project="BrokerObserverPattern" 
+    file="C:/Program Files/Java/jre1.8.0_25/lib/rt.jar" binary="true" label="obs" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="16">      
+      <position height="21" width="0" x="0" y="443"/>    
+    </execution>  
+  </object>  
+  <object id="37" language="java" name="java.util.Observer" project="BrokerObserverPattern" 
+    file="C:/Program Files/Java/jre1.8.0_25/lib/rt.jar" binary="true" type="interface" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>  
+  </object>  
+  <object id="38" language="java" name="java.util.Vector" project="BrokerObserverPattern" 
+    file="C:/Program Files/Java/jre1.8.0_25/lib/rt.jar" binary="true" label="&lt;static&gt;" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="6">      
+      <position height="21" width="0" x="0" y="151"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="21" width="0" x="0" y="193"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="addObserver(java.util.Observer):void">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="5" operation="contains(java.lang.Object):boolean">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </message>  
+  <message id="7" operation="addElement(E):void">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>  
+  <message id="10" operation="setChanged():void">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="11"/>  
+  </message>  
+  <message id="13" operation="notifyObservers(java.lang.Object):void">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="14"/>  
+  </message>  
+  <message id="15" operation="toArray():java.lang.Object[]">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="16"/>  
+  </message>  
+  <message id="17" operation="clearChanged():void">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="18"/>  
+  </message>  
+  <message id="19" operation="update(java.util.Observable,java.lang.Object):void">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="20"/>  
+  </message>  
+  <message id="22" operation="update(java.util.Observable,java.lang.Object):void">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="23"/>  
+  </message>  
+  <message id="25" operation="notifyObservers(java.util.Observable,java.lang.Object):void">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="26"/>  
+  </message>  
+  <message id="27" operation="getEventName():java.lang.String">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="28"/>  
+  </message>  
+  <message id="29" operation="get(java.lang.Object):V">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="30"/>  
+  </message>  
+  <message id="31" operation="update(java.util.Observable,java.lang.Object):void">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="32"/>  
+  </message>
+</sequence-diagram>
